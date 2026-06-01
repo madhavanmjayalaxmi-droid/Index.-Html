@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abi Mobiles & Service — Kumbakonam</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #060608;
+  --white: #ffffff;
+  --gray-500: #86868b;
+  --gray-200: #e8e8ed;
+  --accent: #0071e3;
+  --accent-light: #2997ff;
+  --accent-glow: rgba(0,113,227,0.35);
+  --gold: #f5a623;
+  --radius: 20px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Sora',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:60px;background:rgba(6,6,8,0.8);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.07);transition:all .3s;}
+.nav-logo{font-size:1.1rem;font-weight:800;letter-spacing:-0.03em;color:#fff;text-decoration:none;}
+.nav-logo span{color:var(--accent-light);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{text-decoration:none;color:var(--gray-500);font-size:0.78rem;font-weight:500;letter-spacing:.02em;transition:color .2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:6px 16px;border-radius:20px;font-size:.75rem!important;font-weight:600!important;transition:background .2s!important;}
+.nav-cta:hover{background:var(--accent-light)!important;}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 5% 60px;gap:2rem;position:relative;overflow:hidden;}
+#hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.hero-left{position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,113,227,.15);border:1px solid rgba(0,113,227,.4);color:var(--accent-light);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:1.5rem;animation:fadeUp .8s ease both;}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--accent-light);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.8);}}
+.hero h1{font-size:clamp(2.4rem,4.5vw,4.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.08;animation:fadeUp .8s .1s ease both;}
+.hero h1 .grad{background:linear-gradient(135deg,#2997ff,#0071e3,#a8d8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;}
+.hero-sub{margin:1.2rem 0 2rem;font-size:.95rem;font-weight:300;color:var(--gray-500);line-height:1.7;max-width:420px;animation:fadeUp .8s .2s ease both;}
+.hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap;animation:fadeUp .8s .3s ease both;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:13px 26px;border-radius:50px;text-decoration:none;font-size:.85rem;font-weight:600;transition:all .25s;box-shadow:0 0 30px var(--accent-glow);}
+.btn-primary:hover{background:var(--accent-light);transform:translateY(-2px);box-shadow:0 8px 40px var(--accent-glow);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);color:#fff;padding:13px 26px;border-radius:50px;text-decoration:none;font-size:.85rem;font-weight:500;border:1px solid rgba(255,255,255,.12);transition:all .25s;}
+.btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);}
+.hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;}
+#phone-canvas{width:100%;max-width:420px;height:520px;filter:drop-shadow(0 0 60px rgba(0,113,227,.5));}
+
+/* STATS */
+.stats-strip{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:2rem 5%;display:flex;justify-content:center;flex-wrap:wrap;}
+.stat-item{text-align:center;padding:.5rem 2.5rem;border-right:1px solid rgba(255,255,255,.07);}
+.stat-item:last-child{border-right:none;}
+.stat-number{font-size:2.1rem;font-weight:800;letter-spacing:-.04em;line-height:1;}
+.stat-number span{color:var(--accent-light);}
+.stat-label{font-size:.68rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;font-weight:500;}
+
+/* SECTIONS */
+section{padding:100px 5%;}
+.section-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--accent-light);margin-bottom:.8rem;}
+.section-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;max-width:560px;}
+.section-sub{margin-top:.8rem;font-size:.95rem;color:var(--gray-500);font-weight:300;max-width:480px;line-height:1.7;}
+.section-header{margin-bottom:3.5rem;}
+.section-header.center{text-align:center;}
+.section-header.center .section-title,.section-header.center .section-sub{margin-left:auto;margin-right:auto;}
+
+/* SERVICES */
+#services{background:#09090b;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.05);}
+.service-card{background:#0d0d10;padding:2.2rem 1.8rem;transition:background .3s;position:relative;overflow:hidden;cursor:default;}
+.service-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,113,227,.08),transparent 60%);opacity:0;transition:opacity .3s;}
+.service-card:hover{background:#111115;}
+.service-card:hover::before{opacity:1;}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .4s;}
+.service-card:hover::after{transform:scaleX(1);}
+.service-icon-3d{width:56px;height:56px;background:rgba(0,113,227,.1);border:1px solid rgba(0,113,227,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.3rem;transition:transform .4s,background .3s,box-shadow .3s;transform-style:preserve-3d;}
+.service-card:hover .service-icon-3d{transform:rotateY(15deg) rotateX(-10deg) scale(1.1);background:rgba(0,113,227,.2);box-shadow:0 12px 30px rgba(0,113,227,.25);}
+.service-card h3{font-size:1rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.02em;}
+.service-card p{font-size:.82rem;color:var(--gray-500);font-weight:300;line-height:1.65;}
+
+/* BRANDS 3D */
+#brands{background:var(--black);}
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;}
+.brand-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:2rem 1rem;text-align:center;transition:all .4s;cursor:default;transform-style:preserve-3d;perspective:600px;position:relative;overflow:hidden;}
+.brand-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,113,227,.15),transparent 70%);opacity:0;transition:opacity .4s;}
+.brand-card:hover{border-color:rgba(0,113,227,.4);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 30px rgba(0,113,227,.15);transform:translateY(-8px) rotateX(8deg);}
+.brand-card:hover::before{opacity:1;}
+.brand-emoji{font-size:2.4rem;display:block;margin-bottom:.8rem;transition:transform .4s;}
+.brand-card:hover .brand-emoji{transform:scale(1.2) translateY(-4px);}
+.brand-name{font-size:.85rem;font-weight:600;color:var(--gray-200);}
+
+/* WHY US */
+#why{background:#08080a;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.why-visual{background:linear-gradient(135deg,rgba(0,113,227,.1),rgba(41,151,255,.04));border:1px solid rgba(0,113,227,.2);border-radius:24px;padding:2.5rem;position:relative;overflow:hidden;}
+.why-visual::before{content:'★★★★★';font-size:1rem;letter-spacing:4px;color:var(--gold);display:block;margin-bottom:1.2rem;}
+.why-visual blockquote{font-size:1.1rem;font-weight:300;line-height:1.7;color:var(--gray-200);font-style:italic;margin-bottom:1.2rem;}
+.why-visual cite{font-size:.78rem;color:var(--gray-500);font-style:normal;font-weight:500;}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:1rem;}
+.why-list li{display:flex;align-items:flex-start;gap:1rem;font-size:.9rem;color:var(--gray-200);line-height:1.5;}
+.why-check{width:24px;height:24px;min-width:24px;background:rgba(0,113,227,.15);border:1px solid var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--accent-light);margin-top:1px;}
+
+/* CONTACT */
+#contact{background:#050507;position:relative;overflow:hidden;}
+#contact-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.contact-inner{position:relative;z-index:1;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;}
+.contact-info{display:flex;flex-direction:column;gap:1rem;}
+.contact-item{display:flex;align-items:center;gap:1.2rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.1rem 1.4rem;transition:all .3s;text-decoration:none;color:inherit;}
+.contact-item:hover{background:rgba(0,113,227,.08);border-color:rgba(0,113,227,.3);transform:translateX(5px);}
+.contact-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.ci-phone{background:rgba(0,113,227,.15);}
+.ci-wa{background:rgba(37,211,102,.15);}
+.ci-loc{background:rgba(255,149,0,.15);}
+.ci-time{background:rgba(175,82,222,.15);}
+.contact-item-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-500);font-weight:600;margin-bottom:2px;}
+.contact-item-value{font-size:.92rem;font-weight:600;color:#fff;letter-spacing:-.01em;}
+.contact-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:2.5rem 2rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.2rem;}
+.contact-box h3{font-size:1.3rem;font-weight:700;letter-spacing:-.02em;}
+.contact-box p{font-size:.85rem;color:var(--gray-500);line-height:1.6;}
+
+/* FOOTER */
+footer{background:#030305;border-top:1px solid rgba(255,255,255,.06);padding:2.5rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-brand{font-size:1rem;font-weight:800;letter-spacing:-.02em;}
+.footer-brand span{color:var(--accent-light);}
+.footer-copy{font-size:.75rem;color:var(--gray-500);font-weight:300;}
+.footer-links{display:flex;gap:1.5rem;list-style:none;}
+.footer-links a{text-decoration:none;color:var(--gray-500);font-size:.75rem;transition:color .2s;}
+.footer-links a:hover{color:#fff;}
+
+/* WA FLOAT */
+.wa-float{position:fixed;right:22px;bottom:22px;z-index:999;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.4rem;box-shadow:0 8px 30px rgba(37,211,102,.45);animation:floatBounce 3s ease-in-out infinite;}
+.wa-float:hover{animation:none;transform:scale(1.12);}
+@keyframes floatBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:90px;}
+  #phone-canvas{height:320px;}
+  .hero-sub,.hero-ctas{margin-left:auto;margin-right:auto;}
+  .hero-ctas{justify-content:center;}
+  .why-grid,.contact-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .stat-item{padding:.5rem 1.2rem;border-right:none;border-bottom:1px solid rgba(255,255,255,.07);}
+  .stat-item:last-child{border-bottom:none;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:2rem;}
+  .brands-grid{grid-template-columns:repeat(2,1fr);}
+  footer{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Abi <span>Mobiles</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-left">
+    <div class="hero-badge">📍 Kumbakonam's #1 Mobile Store</div>
+    <h1>Next-Gen Mobiles.<br><span class="grad">Expert Service.</span></h1>
+    <p class="hero-sub">Your trusted destination for the latest smartphones, professional repairs, and genuine accessories — all under one roof in Kumbakonam.</p>
+    <div class="hero-ctas">
+      <a href="tel:9363559743" class="btn-primary">📞 Call — 9363559743</a>
+      <a href="https://wa.me/919363559743" class="btn-ghost" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <canvas id="phone-canvas"></canvas>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-number">500<span>+</span></div><div class="stat-label">Happy Customers</div></div>
+  <div class="stat-item"><div class="stat-number">6<span>+</span></div><div class="stat-label">Top Brands</div></div>
+  <div class="stat-item"><div class="stat-number">6</div><div class="stat-label">Services</div></div>
+  <div class="stat-item"><div class="stat-number">12<span>hr</span></div><div class="stat-label">Open Daily</div></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header center">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Everything Mobile, Done Right.</h2>
+    <p class="section-sub">From flagship phones to expert repairs — speed and precision, every time.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card"><div class="service-icon-3d">📱</div><h3>Mobile Sales</h3><p>Latest smartphones from top brands at the best prices with genuine warranty.</p></div>
+    <div class="service-card"><div class="service-icon-3d">🔧</div><h3>Mobile Repair</h3><p>Expert technicians fix hardware issues fast. Most repairs done same day.</p></div>
+    <div class="service-card"><div class="service-icon-3d">🖥️</div><h3>Screen Replacement</h3><p>Cracked screen? We replace all models with OEM-quality displays.</p></div>
+    <div class="service-card"><div class="service-icon-3d">⚙️</div><h3>Software Updates</h3><p>OS upgrades, flashing, virus removal by certified professionals.</p></div>
+    <div class="service-card"><div class="service-icon-3d">🎧</div><h3>Accessories</h3><p>Cases, chargers, earphones, power banks — all top brands, great prices.</p></div>
+    <div class="service-card"><div class="service-icon-3d">🔄</div><h3>Second-Hand Mobiles</h3><p>Quality-tested pre-owned smartphones with warranty. Exchange your old phone.</p></div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="brands">
+  <div class="section-header center">
+    <div class="section-label">Our Collection</div>
+    <h2 class="section-title">All Top Brands, One Store.</h2>
+    <p class="section-sub">We stock and service the world's leading smartphone brands.</p>
+  </div>
+  <div class="brands-grid reveal">
+    <div class="brand-card"><span class="brand-emoji">🍎</span><div class="brand-name">Apple iPhone</div></div>
+    <div class="brand-card"><span class="brand-emoji">📡</span><div class="brand-name">Samsung</div></div>
+    <div class="brand-card"><span class="brand-emoji">⚡</span><div class="brand-name">OnePlus</div></div>
+    <div class="brand-card"><span class="brand-emoji">🔴</span><div class="brand-name">Redmi</div></div>
+    <div class="brand-card"><span class="brand-emoji">🟡</span><div class="brand-name">Realme</div></div>
+    <div class="brand-card"><span class="brand-emoji">🟢</span><div class="brand-name">Vivo & Oppo</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-header">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">Kumbakonam Trusts Abi Mobiles.</h2>
+    <p class="section-sub">We're not just a shop — we're your long-term tech partner.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-visual reveal">
+      <blockquote>"Best mobile service in Kumbakonam! Fixed my iPhone screen in 2 hours. Honest pricing, friendly staff."</blockquote>
+      <cite>— Loyal Customer, Kumbakonam</cite>
+    </div>
+    <ul class="why-list reveal">
+      <li><div class="why-check">✓</div><span><strong>Genuine Parts Only</strong> — No cheap imitations. Every repair uses authentic components.</span></li>
+      <li><div class="why-check">✓</div><span><strong>Transparent Pricing</strong> — No hidden charges. We quote before we fix.</span></li>
+      <li><div class="why-check">✓</div><span><strong>Fast Turnaround</strong> — Most repairs done same day.</span></li>
+      <li><div class="why-check">✓</div><span><strong>Expert Technicians</strong> — Trained professionals across all brands.</span></li>
+      <li><div class="why-check">✓</div><span><strong>Open 12 Hours Daily</strong> — Mon–Fri, 9 AM to 9 PM.</span></li>
+      <li><div class="why-check">✓</div><span><strong>Owner: Abialexander</strong> — Personal attention on every service.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <canvas id="contact-canvas"></canvas>
+  <div class="contact-inner">
+    <div class="section-header center">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Visit Us or Call Anytime.</h2>
+      <p class="section-sub">Walk in, call, or chat on WhatsApp. We're always ready.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <a href="tel:9363559743" class="contact-item"><div class="contact-icon ci-phone">📞</div><div><div class="contact-item-title">Phone</div><div class="contact-item-value">93635 59743</div></div></a>
+        <a href="https://wa.me/919363559743" class="contact-item" target="_blank"><div class="contact-icon ci-wa">💬</div><div><div class="contact-item-title">WhatsApp</div><div class="contact-item-value">+91 93635 59743</div></div></a>
+        <div class="contact-item"><div class="contact-icon ci-loc">📍</div><div><div class="contact-item-title">Location</div><div class="contact-item-value">Kumbakonam, Tamil Nadu</div></div></div>
+        <div class="contact-item"><div class="contact-icon ci-time">🕘</div><div><div class="contact-item-title">Business Hours</div><div class="contact-item-value">Mon–Fri · 9 AM – 9 PM</div></div></div>
+      </div>
+      <div class="contact-box">
+        <div style="font-size:3rem">📍</div>
+        <h3>Abi Mobiles & Service</h3>
+        <p>Kumbakonam, Tamil Nadu<br>Owner: Abialexander</p>
+        <a href="https://wa.me/919363559743" class="btn-primary" target="_blank" style="font-size:.82rem;padding:12px 24px;">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Abi <span>Mobiles</span> & Service</div>
+  <div class="footer-copy">© 2026 Abi Mobiles and Service. All Rights Reserved.</div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<a href="https://wa.me/919363559743" class="wa-float" target="_blank">💬</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ── HERO PARTICLE CANVAS (Three.js) ──────────────────────────────
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+  camera.position.z = 5;
+
+  function resize(){
+    const w = canvas.parentElement.offsetWidth;
+    const h = canvas.parentElement.offsetHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Floating particles
+  const count = 200;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(count*3);
+  const sizes = new Float32Array(count);
+  for(let i=0;i<count;i++){
+    pos[i*3]   = (Math.random()-0.5)*20;
+    pos[i*3+1] = (Math.random()-0.5)*20;
+    pos[i*3+2] = (Math.random()-0.5)*10;
+    sizes[i] = Math.random()*3+1;
+  }
+  geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('size', new THREE.BufferAttribute(sizes,1));
+
+  const mat = new THREE.PointsMaterial({
+    color: 0x2997ff, size:0.06, transparent:true, opacity:0.6,
+    sizeAttenuation:true
+  });
+  const particles = new THREE.Points(geo, mat);
+  scene.add(particles);
+
+  // Floating rings
+  for(let i=0;i<3;i++){
+    const rGeo = new THREE.TorusGeometry(1.5+i*1.2, 0.008, 8, 80);
+    const rMat = new THREE.MeshBasicMaterial({color:0x0071e3, transparent:true, opacity:0.12-i*0.03});
+    const ring = new THREE.Mesh(rGeo, rMat);
+    ring.rotation.x = Math.PI/2 + i*0.3;
+    ring.rotation.z = i*0.5;
+    ring.userData.speed = 0.003 + i*0.001;
+    ring.userData.idx = i;
+    scene.add(ring);
+  }
+
+  let mouseX=0, mouseY=0;
+  document.addEventListener('mousemove',e=>{
+    mouseX = (e.clientX/window.innerWidth - 0.5)*0.5;
+    mouseY = (e.clientY/window.innerHeight - 0.5)*0.5;
+  });
+
+  let t=0;
+  function animate(){
+    requestAnimationFrame(animate);
+    t+=0.005;
+    particles.rotation.y = t*0.05;
+    particles.rotation.x = t*0.02;
+    camera.position.x += (mouseX*2 - camera.position.x)*0.03;
+    camera.position.y += (-mouseY*2 - camera.position.y)*0.03;
+    camera.lookAt(scene.position);
+    scene.children.forEach(obj=>{
+      if(obj.userData.speed){
+        obj.rotation.z += obj.userData.speed;
+        obj.rotation.x += obj.userData.speed*0.5;
+      }
+    });
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+// ── 3D PHONE (Three.js) ──────────────────────────────────────────
+(function(){
+  const canvas = document.getElementById('phone-canvas');
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.shadowMap.enabled = true;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  camera.position.set(0, 0, 6);
+
+  function resize(){
+    const w = canvas.parentElement.offsetWidth * 0.9;
+    const h = Math.min(520, window.innerHeight * 0.6);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  dirLight.position.set(3, 5, 5);
+  scene.add(dirLight);
+  const blueLight = new THREE.PointLight(0x2997ff, 2, 10);
+  blueLight.position.set(-3, 0, 3);
+  scene.add(blueLight);
+  const rimLight = new THREE.PointLight(0x0071e3, 1.5, 8);
+  rimLight.position.set(3, -2, -2);
+  scene.add(rimLight);
+
+  // Phone body
+  const phoneGroup = new THREE.Group();
+
+  // Body
+  const bodyGeo = new THREE.BoxGeometry(1.6, 3.2, 0.12, 1,1,1);
+  const bodyMat = new THREE.MeshPhysicalMaterial({
+    color: 0x1a1a2e,
+    metalness: 0.9,
+    roughness: 0.1,
+    reflectivity: 1,
+  });
+  const body = new THREE.Mesh(bodyGeo, bodyMat);
+  phoneGroup.add(body);
+
+  // Screen
+  const screenGeo = new THREE.PlaneGeometry(1.35, 2.8);
+  const screenCanvas2d = document.createElement('canvas');
+  screenCanvas2d.width = 270; screenCanvas2d.height = 560;
+  const ctx = screenCanvas2d.getContext('2d');
+
+  // Draw screen content
+  const grad = ctx.createLinearGradient(0,0,270,560);
+  grad.addColorStop(0,'#0d0d1a');
+  grad.addColorStop(1,'#060610');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,270,560);
+
+  // Status bar
+  ctx.fillStyle='rgba(255,255,255,0.5)';
+  ctx.font='bold 14px sans-serif';
+  ctx.fillText('9:41', 20, 30);
+  ctx.font='12px sans-serif';
+  ctx.fillText('●●●', 200, 30);
+
+  // Notch
+  ctx.fillStyle='#000';
+  ctx.beginPath();
+  ctx.roundRect(90,0,90,20,10);
+  ctx.fill();
+
+  // App icon grid
+  const icons = ['📱','🔧','🖥️','🎧','⚡','📍','💬','⚙️','🔄','★','📞','🛒'];
+  let ix=0;
+  for(let row=0;row<3;row++){
+    for(let col=0;col<4;col++){
+      const x=25+col*62, y=80+row*70;
+      ctx.fillStyle='rgba(255,255,255,0.07)';
+      ctx.beginPath();
+      ctx.roundRect(x,y,48,48,12);
+      ctx.fill();
+      ctx.font='22px sans-serif';
+      ctx.fillText(icons[ix++]||'', x+13, y+32);
+    }
+  }
+
+  // Bottom text
+  ctx.fillStyle='rgba(41,151,255,0.9)';
+  ctx.font='bold 13px sans-serif';
+  ctx.textAlign='center';
+  ctx.fillText('Abi Mobiles', 135, 360);
+  ctx.fillStyle='rgba(255,255,255,0.4)';
+  ctx.font='11px sans-serif';
+  ctx.fillText('Kumbakonam', 135, 378);
+
+  // Home indicator
+  ctx.fillStyle='rgba(255,255,255,0.3)';
+  ctx.beginPath();
+  ctx.roundRect(100,520,70,4,2);
+  ctx.fill();
+
+  const screenTex = new THREE.CanvasTexture(screenCanvas2d);
+  const screenMat = new THREE.MeshBasicMaterial({map:screenTex});
+  const screen = new THREE.Mesh(screenGeo, screenMat);
+  screen.position.z = 0.065;
+  phoneGroup.add(screen);
+
+  // Camera bump
+  const bumpGeo = new THREE.BoxGeometry(0.5, 0.5, 0.05);
+  const bumpMat = new THREE.MeshPhysicalMaterial({color:0x111120, metalness:0.95, roughness:0.05});
+  const bump = new THREE.Mesh(bumpGeo, bumpMat);
+  bump.position.set(0.35, 1.2, -0.085);
+  phoneGroup.add(bump);
+
+  // Camera lenses
+  for(let i=0;i<3;i++){
+    const lGeo = new THREE.CircleGeometry(0.07,32);
+    const lMat = new THREE.MeshPhysicalMaterial({color:0x0d1117, metalness:0.5, roughness:0.2});
+    const lens = new THREE.Mesh(lGeo, lMat);
+    lens.position.set(0.25+((i%2)*0.2), 1.28-(Math.floor(i/2)*0.2), -0.06);
+    lens.rotation.y = Math.PI;
+    phoneGroup.add(lens);
+    // Lens shine
+    const shineGeo = new THREE.CircleGeometry(0.04,32);
+    const shineMat = new THREE.MeshBasicMaterial({color:0x2997ff, transparent:true, opacity:0.5});
+    const shine = new THREE.Mesh(shineGeo, shineMat);
+    shine.position.set(0.25+((i%2)*0.2), 1.28-(Math.floor(i/2)*0.2), -0.055);
+    shine.rotation.y = Math.PI;
+    phoneGroup.add(shine);
+  }
+
+  // Side buttons
+  const btnGeo = new THREE.BoxGeometry(0.04, 0.25, 0.14);
+  const btnMat = new THREE.MeshPhysicalMaterial({color:0x333355, metalness:0.9, roughness:0.1});
+  const btn1 = new THREE.Mesh(btnGeo, btnMat);
+  btn1.position.set(0.82, 0.4, 0);
+  phoneGroup.add(btn1);
+  const btn2 = new THREE.Mesh(new THREE.BoxGeometry(0.04,0.18,0.14), btnMat);
+  btn2.position.set(-0.82, 0.3, 0);
+  phoneGroup.add(btn2);
+  const btn3 = new THREE.Mesh(new THREE.BoxGeometry(0.04,0.18,0.14), btnMat);
+  btn3.position.set(-0.82, 0.0, 0);
+  phoneGroup.add(btn3);
+
+  // Glow ring around phone
+  const ringGeo = new THREE.TorusGeometry(1.1, 0.012, 8, 100);
+  const ringMat = new THREE.MeshBasicMaterial({color:0x2997ff, transparent:true, opacity:0.3});
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  phoneGroup.add(ring);
+
+  scene.add(phoneGroup);
+
+  // Floating orbs
+  for(let i=0;i<5;i++){
+    const oGeo = new THREE.SphereGeometry(0.04+Math.random()*0.06,16,16);
+    const oMat = new THREE.MeshBasicMaterial({color:0x2997ff, transparent:true, opacity:0.4+Math.random()*0.4});
+    const orb = new THREE.Mesh(oGeo, oMat);
+    orb.position.set((Math.random()-0.5)*4, (Math.random()-0.5)*5, (Math.random()-0.5)*2);
+    orb.userData.offset = Math.random()*Math.PI*2;
+    orb.userData.radius = 0.3+Math.random()*0.5;
+    scene.add(orb);
+  }
+
+  let mouseX=0, mouseY=0;
+  document.addEventListener('mousemove', e=>{
+    mouseX = (e.clientX/window.innerWidth - 0.5);
+    mouseY = (e.clientY/window.innerHeight - 0.5);
+  });
+
+  let t=0;
+  function animate(){
+    requestAnimationFrame(animate);
+    t += 0.012;
+
+    // Smooth phone rotation following mouse
+    phoneGroup.rotation.y += (mouseX * 0.6 - phoneGroup.rotation.y) * 0.05;
+    phoneGroup.rotation.x += (-mouseY * 0.3 - phoneGroup.rotation.x) * 0.05;
+
+    // Auto-rotate when no mouse input
+    phoneGroup.rotation.y += Math.sin(t*0.3)*0.003;
+
+    // Bob up and down
+    phoneGroup.position.y = Math.sin(t*0.5)*0.15;
+
+    // Animate ring
+    ring.rotation.z = t*0.3;
+    ring.material.opacity = 0.15 + Math.sin(t*2)*0.1;
+
+    // Animate blue light
+    blueLight.intensity = 1.5 + Math.sin(t*1.5)*0.5;
+
+    // Animate orbs
+    scene.children.forEach(obj=>{
+      if(obj.userData.offset !== undefined){
+        obj.position.x += Math.sin(t + obj.userData.offset)*0.003;
+        obj.position.y += Math.cos(t*0.7 + obj.userData.offset)*0.003;
+      }
+    });
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+// ── CONTACT CANVAS (floating orbs) ──────────────────────────────
+(function(){
+  const canvas = document.getElementById('contact-canvas');
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+  camera.position.z = 5;
+
+  function resize(){
+    const w = canvas.parentElement.offsetWidth;
+    const h = canvas.parentElement.offsetHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const count = 60;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(count*3);
+  for(let i=0;i<count;i++){
+    pos[i*3]=(Math.random()-0.5)*18;
+    pos[i*3+1]=(Math.random()-0.5)*12;
+    pos[i*3+2]=(Math.random()-0.5)*5;
+  }
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const mat = new THREE.PointsMaterial({color:0x0071e3,size:0.08,transparent:true,opacity:0.4});
+  scene.add(new THREE.Points(geo,mat));
+
+  let t=0;
+  function animate(){
+    requestAnimationFrame(animate);
+    t+=0.005;
+    scene.children[0].rotation.y = t*0.08;
+    renderer.render(scene,camera);
+  }
+  animate();
+})();
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry,i)=>{
+    if(entry.isIntersecting){
+      setTimeout(()=>entry.target.classList.add('visible'), i*100);
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.1});
+reveals.forEach(el=>observer.observe(el));
+
+// ── NAV SCROLL ───────────────────────────────────────────────────
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll',()=>{
+  nav.style.background = window.scrollY>60 ? 'rgba(6,6,8,0.97)' : 'rgba(6,6,8,0.8)';
+});
+
+// ── SERVICE CARD MOUSE GLOW ──────────────────────────────────────
+document.querySelectorAll('.service-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX-rect.left)/rect.width*100).toFixed(1)+'%';
+    const y = ((e.clientY-rect.top)/rect.height*100).toFixed(1)+'%';
+    card.style.setProperty('--mx',x);
+    card.style.setProperty('--my',y);
+  });
+});
+</script>
+</body>
+</html>
